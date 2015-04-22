@@ -34,8 +34,7 @@ public class Pelota extends Sprite{
 		}
 		//ABAJO
 		if(getPosition().y >  MainWindow.HEIGHT - getWidth() ){
-			//speed.y= speed.y * -1;
-			System.exit(0);
+			speed.y= speed.y * -1;
 		}
 		//ARRIBA
 		if(getPosition().y < 0){
