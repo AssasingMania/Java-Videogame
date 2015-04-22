@@ -24,20 +24,18 @@ public class Pelota extends Sprite{
 	public void act() {
 		getPosition().add(speed);
 		
-		
-		//DERECHA
 		if(getPosition().x >  MainWindow.WIDTH - getWidth() ){
 			speed.x= speed.x * -1;
 		}
-		//ABAJO
+		
 		if(getPosition().y >  MainWindow.HEIGHT - getWidth() ){
 			speed.y= speed.y * -1;
 		}
-		//ARRIBA
+		
 		if(getPosition().y < 0){
 			speed.y= speed.y * -1;
 		}
-		//IZQUIERDA
+		
 		if(getPosition().x < 0){
 			speed.x= speed.x * -1;
 		}
