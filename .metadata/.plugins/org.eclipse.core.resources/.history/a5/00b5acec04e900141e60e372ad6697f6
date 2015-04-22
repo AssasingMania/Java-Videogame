@@ -1,0 +1,40 @@
+package main;
+
+import java.awt.Image;
+import java.awt.event.KeyEvent;
+
+import es.techtalents.ttgdl.gui.MainWindow;
+import es.techtalents.ttgdl.image.ImageLoader;
+import es.techtalents.ttgdl.sprite.Sprite;
+
+public class Raqueta extends Sprite{
+
+	public Raqueta() {
+		Image img = ImageLoader.loadImage("Images/RaquetaRoja.png");
+		img = img.getScaledInstance(MainWindow.WIDTH/7, MainWindow.HEIGHT/28, Image.SCALE_SMOOTH);
+		setImage(img);
+		setPosition(MainWindow.WIDTH/2 - getWidth()/2, MainWindow.HEIGHT - getHeight()/2);
+		 
+	}
+
+	@Override
+	public void act() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onKeyPress(int keyCode) {
+		if(keyCode == KeyEvent.VK_ESCAPE){
+			System.exit(0);
+		}
+	}
+
+	@Override
+	public void onColision(Sprite arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+}

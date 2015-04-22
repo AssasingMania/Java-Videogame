@@ -1,0 +1,12 @@
+package main;
+
+import es.techtalents.ttgdl.gui.MainWindow;
+
+public class Main {
+
+	public static void main(String[] args) {
+		MainWindow w = new MainWindow();
+		
+	}
+
+}
