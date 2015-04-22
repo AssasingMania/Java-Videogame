@@ -16,7 +16,7 @@ public class Main {
 		Window ventana = new Window();
 		ventana.setHeight(MainWindow.HEIGHT);
 		ventana.setWidth(MainWindow.WIDTH);
-		Image background = ImageLoader.loadImage("Images/background2.jpg");
+		Image background = ImageLoader.loadImage("Images/background.jpg");
 		background = background.getScaledInstance(MainWindow.WIDTH, MainWindow.HEIGHT, Image.SCALE_SMOOTH);
 		ventana.setBackgroundImage(background);
 		ventana.setVisible(true);
@@ -26,7 +26,7 @@ public class Main {
 			r.setVisible(true);
 		ventana.addSprite(r);
 		
-		Pelota p = new Pelota(r);
+		Pelota p = new Pelota();
 		p.setVisible(true);
 		ventana.addSprite(p);
 		
