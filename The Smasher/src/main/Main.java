@@ -1,6 +1,9 @@
 package main;
 
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
+
 import es.techtalents.ttgdl.gui.MainWindow;
 import es.techtalents.ttgdl.gui.window.Window;
 import es.techtalents.ttgdl.image.ImageLoader;
@@ -23,23 +26,40 @@ public class Main {
 		r.setVisible(true);
 		ventana.addSprite(r);
 		
-		Ladrillos l = new Ladrillos();
-		l.setVisible(true);
-		ventana.addSprite(l);
+		List<Ladrillos> lista = new ArrayList<Ladrillos>();
 		
-		Pelota p = new Pelota(r, l, w, ventana);
+		int numX = 9;
+		int numY = 4;
+		
+		for(int i = 0; i < numX; i++){
+			for(int j = 0; j < numY; j++){
+				Ladrillos l = new Ladrillos(numX, numY);
+				l.setVisible(true);
+				ventana.addSprite(l);
+				lista.add(l);
+				l.setPosition(i*l.getWidth(),j*l.getHeight());
+				
+				
+				
+			}
+			
+		}
+		
+		
+		
+		Pelota p = new Pelota(r, w, ventana, lista);
 		p.setVisible(true);
 		ventana.addSprite(p);
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
+		Window ventanayouwon = new Window();
+		ventanayouwon.setHeight(MainWindow.HEIGHT);
+		ventanayouwon.setWidth(MainWindow.WIDTH);
+		Image backgroundyouwon = ImageLoader.loadImage("Images/background3.jpg");
+		backgroundyouwon = backgroundyouwon.getScaledInstance(MainWindow.WIDTH, MainWindow.HEIGHT, Image.SCALE_SMOOTH);
+		ventanayouwon.setBackgroundImage(backgroundyouwon);
+		ventanayouwon.setVisible(true);
 		
 		
 		

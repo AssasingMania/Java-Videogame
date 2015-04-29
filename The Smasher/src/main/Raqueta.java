@@ -12,7 +12,7 @@ public class Raqueta extends Sprite{
 
 	private boolean moveRight;
 	private boolean moveLeft;
-	int vx = 2;
+	int vx = 3;
 	
 	public Raqueta() {
 		
