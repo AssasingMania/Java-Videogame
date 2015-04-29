@@ -37,7 +37,7 @@ public class Main {
 				l.setVisible(true);
 				ventana.addSprite(l);
 				lista.add(l);
-				l.setPosition(i*l.getWidth(),j*l.getHeight());
+				l.setPosition(i*(l.getWidth()+7),j*l.getHeight());
 				
 				
 				
