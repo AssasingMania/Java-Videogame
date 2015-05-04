@@ -18,9 +18,10 @@ public class Pelota extends Sprite{
 	private Window ventanaJuego;
 	boolean muerto = false;
 	boolean won = true;
-	private List<Ladrillos> lista;
+	private List<Ladrillo> lista;
+	private int numLadrillos;
 
-	public Pelota(Raqueta r, MainWindow w, Window ventanaJuego, List<Ladrillos> lista) {
+	public Pelota(Raqueta r, MainWindow w, Window ventanaJuego, List<Ladrillo> lista) {
 		Image img = ImageLoader.loadImage("Images/fire-ball-png.png");
 		setImage(img.getScaledInstance(MainWindow.WIDTH/30, MainWindow.WIDTH/30, Image.SCALE_SMOOTH));
 		setPosition(MainWindow.WIDTH/2 - getWidth()/2, r.getPosition().y-getHeight());
@@ -28,12 +29,21 @@ public class Pelota extends Sprite{
 		this.w = w;
 		this.ventanaJuego = ventanaJuego;
 		this.lista = lista;
+		
 	}
 
 	@Override
 	public void act() {
 		if(r.checkCollision(this)){
 			speed.y = -2;
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 		
 		getPosition().add(speed);
@@ -59,26 +69,15 @@ public class Pelota extends Sprite{
 		if(getPosition().x < 0){
 			speed.x= speed.x * -1;
 		}
-		
-		if(getPosition().y < 0){
-
-		}
-
 
 		//LADRILLOS
-		for(Ladrillos l : lista){
+		for(Ladrillo l : lista){
 			if(l.checkCollision(this)){
 				speed.y= speed.y * -1;
 				l.onColision(this);
 				break;
 			}
 		}
-		
-
-
-
-
-
 
 	}
 
@@ -160,7 +159,7 @@ public class Pelota extends Sprite{
      @Override
 	public void onColision(Sprite sprite) {
 		
-		if(sprite instanceof Ladrillos){
+		if(sprite instanceof Ladrillo){
 			speed.y = speed.y * -1;
 			sprite.onColision(this);
 		}

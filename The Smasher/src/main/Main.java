@@ -26,14 +26,14 @@ public class Main {
 		r.setVisible(true);
 		ventana.addSprite(r);
 		
-		List<Ladrillos> lista = new ArrayList<Ladrillos>();
+		List<Ladrillo> lista = new ArrayList<Ladrillo>();
 		
 		int numX = 9;
 		int numY = 4;
 		
 		for(int i = 0; i < numX; i++){
 			for(int j = 0; j < numY; j++){
-				Ladrillos l = new Ladrillos(numX, numY);
+				Ladrillo l = new Ladrillo(7,numX, numY);
 				l.setVisible(true);
 				ventana.addSprite(l);
 				lista.add(l);
