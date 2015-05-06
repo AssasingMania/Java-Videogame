@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import es.techtalents.ttgdl.geom.Point2f;
 import es.techtalents.ttgdl.gui.MainWindow;
@@ -13,14 +14,15 @@ public class Raqueta extends Sprite{
 	private boolean moveRight;
 	private boolean moveLeft;
 	int vx = 3;
-	
-	public Raqueta() {
-		
-		Image img = ImageLoader.loadImage("Images/RaquetaRoja.png");
+	private List<Ladrillo> lista;
+
+	public Raqueta(List<Ladrillo> lista) {
+
+		Image img = ImageLoader.loadImage("Images/RaquetaRoja999999.png");
 		img = img.getScaledInstance(MainWindow.WIDTH/7, MainWindow.HEIGHT/28, Image.SCALE_SMOOTH);
 		setImage(img);
 		setPosition(MainWindow.WIDTH/2 - getWidth()/2, MainWindow.HEIGHT - getHeight()/2);
-		 
+		this.lista = lista;
 	}
 
 	@Override
@@ -33,6 +35,29 @@ public class Raqueta extends Sprite{
 			Point2f pos = super.getPosition();
 			pos.add(+vx , 0);
 		}
+
+		//COMPROBAR COLISION CON LADRILLOS
+		for(Ladrillo l : lista){
+			if(l.checkCollision(this)){
+				System.out.println("me he comido un ladrillo");
+				powerUp();
+				lista.remove(l);
+				break;
+			}
+		}
+
+	}
+
+	private void powerUp() {
+		double chooser = Math.random();
+		if(chooser > 0.0 && chooser < 0.2){
+			Image img = getImage().getScaledInstance(getImage().getWidth(null) + 50, getImage().getHeight(null), Image.SCALE_SMOOTH);
+			setImage(img);
+		}else if(chooser > 0.2 && chooser < 0.4){
+			Image img = getImage().getScaledInstance(getImage().getWidth(null) - 50, getImage().getHeight(null), Image.SCALE_SMOOTH);
+			setImage(img);
+		}
+		
 	}
 
 	@Override
@@ -46,7 +71,7 @@ public class Raqueta extends Sprite{
 		if(keyCode == KeyEvent.VK_LEFT){
 			moveLeft = true;
 		}
-		
+
 	}
 
 
@@ -58,14 +83,14 @@ public class Raqueta extends Sprite{
 		if(keyCode == KeyEvent.VK_LEFT){
 			moveLeft = false;
 		}
-		
+
 	}
 
 	@Override
 	public void onColision(Sprite arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	
+
+
 }

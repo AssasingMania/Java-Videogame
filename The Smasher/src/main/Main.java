@@ -16,24 +16,24 @@ public class Main {
 		Window ventana = new Window();
 		ventana.setHeight(MainWindow.HEIGHT);
 		ventana.setWidth(MainWindow.WIDTH);
-		Image background = ImageLoader.loadImage("Images/background3.jpg");
+		Image background = ImageLoader.loadImage("Images/yeah.jpg");
 		background = background.getScaledInstance(MainWindow.WIDTH, MainWindow.HEIGHT, Image.SCALE_SMOOTH);
 		ventana.setBackgroundImage(background);
 		ventana.setVisible(true);
 		w.addWindow(ventana);
 		
-		Raqueta r = new Raqueta();
+		List<Ladrillo> lista = new ArrayList<Ladrillo>();
+		
+		Raqueta r = new Raqueta(lista);
 		r.setVisible(true);
 		ventana.addSprite(r);
 		
-		List<Ladrillo> lista = new ArrayList<Ladrillo>();
-		
 		int numX = 9;
-		int numY = 4;
+		int numY = 6;
 		
 		for(int i = 0; i < numX; i++){
 			for(int j = 0; j < numY; j++){
-				Ladrillo l = new Ladrillo(7,numX, numY);
+				Ladrillo l = new Ladrillo(4,numX, numY);
 				l.setVisible(true);
 				ventana.addSprite(l);
 				lista.add(l);
@@ -53,13 +53,7 @@ public class Main {
 		
 		
 		
-		Window ventanayouwon = new Window();
-		ventanayouwon.setHeight(MainWindow.HEIGHT);
-		ventanayouwon.setWidth(MainWindow.WIDTH);
-		Image backgroundyouwon = ImageLoader.loadImage("Images/background3.jpg");
-		backgroundyouwon = backgroundyouwon.getScaledInstance(MainWindow.WIDTH, MainWindow.HEIGHT, Image.SCALE_SMOOTH);
-		ventanayouwon.setBackgroundImage(backgroundyouwon);
-		ventanayouwon.setVisible(true);
+		
 		
 		
 		
