@@ -50,13 +50,32 @@ public class Raqueta extends Sprite{
 
 	private void powerUp() {
 		double chooser = Math.random();
-		if(chooser > 0.0 && chooser < 0.2){
+		if(chooser > 0.0 && chooser < 0.5){
 			Image img = getImage().getScaledInstance(getImage().getWidth(null) + 50, getImage().getHeight(null), Image.SCALE_SMOOTH);
 			setImage(img);
-		}else if(chooser > 0.2 && chooser < 0.4){
+		}else if(chooser > 0.5 && chooser < 0.6){
 			Image img = getImage().getScaledInstance(getImage().getWidth(null) - 50, getImage().getHeight(null), Image.SCALE_SMOOTH);
 			setImage(img);
+		}else if(chooser > 0.6 && chooser < 6){
+			Thread t = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					setVisible(false);
+					try {
+						Thread.sleep(5000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					setVisible(true);
+				}
+			});
+			t.start();
+			
 		}
+		
+		
 		
 	}
 

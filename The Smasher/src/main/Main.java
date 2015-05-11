@@ -29,7 +29,7 @@ public class Main {
 		ventana.addSprite(r);
 		
 		int numX = 9;
-		int numY = 6;
+		int numY = 5;
 		
 		for(int i = 0; i < numX; i++){
 			for(int j = 0; j < numY; j++){
