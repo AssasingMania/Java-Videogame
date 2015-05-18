@@ -20,7 +20,7 @@ public class Tienda extends Window{
 		this.game = game;
 		setWidth(Game.WIDTH);
 		setHeight(Game.HEIGHT);
-		Image backgroundTienda = ImageLoader.loadImage("Imagenes/Background para Tienda.jpg");
+		Image backgroundTienda = ImageLoader.loadImage("Imagenes/background tienda.png");
 		backgroundTienda =backgroundTienda.getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 		setBackgroundImage(backgroundTienda);
 		

@@ -15,6 +15,10 @@ public class Game extends MainWindow{
 
 	public void showNivel() {
 		removeWindow(menuPrincipal);
+		removeWindow(tienda);
+		if(partida != null){
+			removeWindow(partida);
+		}
 		addWindow(nivel);
 		nivel.setVisible(true);
 
@@ -22,6 +26,10 @@ public class Game extends MainWindow{
 
 	public void showTienda() {
 		removeWindow(menuPrincipal);
+		if(partida != null){
+			removeWindow(partida);
+		}
+		removeWindow(nivel);
 		addWindow(tienda);
 		tienda.setVisible(true);
 
@@ -29,6 +37,10 @@ public class Game extends MainWindow{
 
 	public void showMainMenu() {
 		removeWindow(nivel);
+		removeWindow(tienda);
+		if(partida != null){
+			removeWindow(partida);
+		}
 		addWindow(menuPrincipal);
 		menuPrincipal.setVisible(true);
 
@@ -37,6 +49,8 @@ public class Game extends MainWindow{
 	public void showPartida(int dificultad) {
 		partida = new Partida(this, dificultad);
 		removeWindow(nivel);
+		removeWindow(tienda);
+		removeWindow(menuPrincipal);
 		addWindow(partida);
 		partida.setVisible(true);
 	}
