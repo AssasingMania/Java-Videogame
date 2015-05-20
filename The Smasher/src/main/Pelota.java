@@ -12,8 +12,8 @@ import es.techtalents.ttgdl.sprite.Sprite;
 
 public class Pelota extends Sprite{
 
-	private static final boolean DEBUG = true;
-	Vector2f speed = new Vector2f(2,-2);
+	private static final boolean DEBUG = false;
+	Vector2f speed = new Vector2f(1,-1);
 	private Raqueta r;
 	private MainWindow w;
 	private Window ventanaJuego;
@@ -36,7 +36,7 @@ public class Pelota extends Sprite{
 	@Override
 	public void act() {
 		if(r.checkCollision(this)){
-			speed.y = -2;
+			speed.y = -1;
 		}
 
 		getPosition().add(speed);

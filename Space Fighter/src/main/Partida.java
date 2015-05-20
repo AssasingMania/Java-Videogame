@@ -39,12 +39,14 @@ public class Partida extends Window{
 		
 		setVisible(true);
 		
-		
+		Nave nave = new Nave();
+		addSprite(nave);
 
 	}
 
 	@Override
 	public void onKeyPress(int keyCode) {
+		super.onKeyPress(keyCode);
 		if(keyCode == KeyEvent.VK_ESCAPE){
 			game.showMainMenu();
 		}

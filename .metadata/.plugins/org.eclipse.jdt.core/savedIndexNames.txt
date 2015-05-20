@@ -18,6 +18,5 @@ INDEX VERSION 1.127+C:\Users\Alumno\Documents\GitHub\Java-Videogame\.metadata\.p
 834584462.index
 1028199574.index
 1947431546.index
-547261460.index
 2193799835.index
 1832949699.index
