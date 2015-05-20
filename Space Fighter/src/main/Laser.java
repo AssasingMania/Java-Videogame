@@ -15,6 +15,7 @@ public class Laser extends Sprite{
 	public Laser(Window w){
 		this.window = w;
 		Image img = ImageLoader.loadImage("Imagenes/bala_aliada2.png");
+		img = img.getScaledInstance(Game.WIDTH/20, Game.HEIGHT/20, Image.SCALE_SMOOTH);
 		setImage(img);
 		setVisible(true);
 		w.addSprite(this);
