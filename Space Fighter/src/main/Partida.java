@@ -39,7 +39,7 @@ public class Partida extends Window{
 		
 		setVisible(true);
 		
-		Nave nave = new Nave();
+		Nave nave = new Nave( this);
 		addSprite(nave);
 
 	}

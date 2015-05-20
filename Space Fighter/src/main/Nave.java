@@ -5,22 +5,32 @@ import java.awt.event.KeyEvent;
 
 import es.techtalents.ttgdl.geom.Point2f;
 import es.techtalents.ttgdl.geom.Vector2f;
+import es.techtalents.ttgdl.gui.window.Window;
 import es.techtalents.ttgdl.image.ImageLoader;
 import es.techtalents.ttgdl.sprite.Sprite;
 
 public class Nave extends Sprite{
+	
+	private Window p;
 
 	private Vector2f speed = new Vector2f(0, 0);
+	
 	private boolean moveRight;
 	private boolean moveLeft;
 	private boolean moveUp;
 	private boolean moveDown;
+	private Arma a;
 
 	private long tiempoAnterior;
 
-	public Nave(){
-		Image imgNave = ImageLoader.loadImage("Imagenes/possibleNave.png");
-		imgNave = imgNave.getScaledInstance(Game.WIDTH/7, Game.HEIGHT/5, Image.SCALE_SMOOTH);
+	private boolean shooting;
+
+	public Nave(Window w){
+		this.p = w;
+		a = new ArmaLaser(p);
+		a.setTiempoDeRecarga(250);
+		Image imgNave = ImageLoader.loadImage("Imagenes/spaceshipY.png");
+		imgNave = imgNave.getScaledInstance(Game.WIDTH/7, Game.HEIGHT/4, Image.SCALE_SMOOTH);
 		setImage(imgNave);
 		setVisible(true);
 
@@ -48,7 +58,7 @@ public class Nave extends Sprite{
 		}
 
 		if(keyCode == KeyEvent.VK_SPACE){
-			shoot();
+			shooting = true;
 		}
 
 
@@ -57,7 +67,9 @@ public class Nave extends Sprite{
 	}
 
 	private void shoot() {
-
+		if(a.canShoot()){
+			a.shoot(getPosition());
+		}
 
 	}
 
@@ -81,6 +93,9 @@ public class Nave extends Sprite{
 		if(keyCode == KeyEvent.VK_DOWN){
 			moveDown = false;
 		}
+		if(keyCode == KeyEvent.VK_SPACE){
+			shooting = false;
+		}
 	}
 
 
@@ -88,6 +103,9 @@ public class Nave extends Sprite{
 
 	@Override
 	public void act() {
+		if(shooting){
+			shoot();
+		}
 		long tiempoActual = System.currentTimeMillis();
 		long tiempoTranscurrido = tiempoActual - tiempoAnterior;
 		tiempoAnterior = tiempoActual;
