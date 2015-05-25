@@ -30,7 +30,7 @@ public class Nave extends Sprite{
 		a = new ArmaLaser(p);
 		a.setTiempoDeRecarga(250);
 		Image imgNave = ImageLoader.loadImage("Imagenes/spaceshipY.png");
-		imgNave = imgNave.getScaledInstance(Game.WIDTH/7, Game.HEIGHT/4, Image.SCALE_SMOOTH);
+		imgNave = imgNave.getScaledInstance(Game.WIDTH/9, Game.HEIGHT/4, Image.SCALE_SMOOTH);
 		setImage(imgNave);
 		setVisible(true);
 
