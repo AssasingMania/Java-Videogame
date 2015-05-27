@@ -51,8 +51,8 @@ public class EnemigoSoldado extends Enemigo{
 			setPuntosDeVida(getPuntosDeVida()-1);
 			if(isDead()){
 				Point2f pos = new Point2f(getPosition()); 
-				//Sprite explosion = new Explosion(window, pos.add(getWidth()/2, getHeight()/2)); 
-				//window.addSprite(explotion);
+				Sprite explosion = new Explosion(window, pos.add(getWidth()/2, getHeight()/2)); 
+				window.addSprite(explosion);
 				((Partida) window).removeEnemy(this);
 			}
 		}

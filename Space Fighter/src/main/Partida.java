@@ -92,7 +92,7 @@ public class Partida extends Window{
 	}
 
 	public void removeEnemy(Enemigo enemigo){
-		enemigos.remove(enemigos);
+		enemigos.remove(enemigo);
 		removeSprite(enemigo);
 	}
 

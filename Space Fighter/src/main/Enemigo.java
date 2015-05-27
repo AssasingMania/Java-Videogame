@@ -6,7 +6,7 @@ import es.techtalents.ttgdl.sprite.Sprite;
 public abstract class Enemigo extends Sprite{
 
 	private Vector2f speed = new Vector2f(0, 0) ; 
-	private int puntosDeVida = 100;
+	private int puntosDeVida = 1;
 	
 	
 	@Override
