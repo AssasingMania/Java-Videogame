@@ -21,28 +21,28 @@ public class Partida extends Window{
 		this.game = game;
 		//Easy
 		if(dificultad == 0 ){
-			img = ImageLoader.loadImage("Imagenes/background easy (2).jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			img = ImageLoader.loadImage("Imagenes/IMAGENES/2f3058_2959908.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s = new Sound("MUSICA/[Electro_-_Arion_-_Cold_Blood_and_Ice_Cream_Cones_.wav", 1);
 			s.start();
 		}
 
 		//Medium
 		if(dificultad == 1 ){
-			img = ImageLoader.loadImage("Imagenes/background medio3.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			img = ImageLoader.loadImage("Imagenes/IMAGENES/lol.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s2 = new Sound("MUSICA/Jetta_-_I_39_d_Love_to_Change_the_World_Matstubs_R.wav", 1);
 			s2.start();
 		}
 
 		//Dificil
 		if(dificultad == 2 ){
-			img = ImageLoader.loadImage("Imagenes/background hard.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			img = ImageLoader.loadImage("Imagenes/IMAGENES/background hard.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s3 = new Sound("MUSICA/K-391_-_Summertime_[Sunshine_.wav", 1);
 			s3.start();
 		}
 
 		//Impossible
 		if(dificultad == 3 ){
-			img = ImageLoader.loadImage("Imagenes/background_imposible.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			img = ImageLoader.loadImage("Imagenes/IMAGENES/yeah.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s4 = new Sound("MUSICA/Two_Steps_From_Hell_-_SkyWorld_SkyWorld_.wav", 1);
 			s4.start();
 		}
