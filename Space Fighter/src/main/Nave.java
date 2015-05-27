@@ -128,6 +128,7 @@ public class Nave extends Sprite{
 			speed.y = 0;	
 		}
 		
+		//para q si lo esquivas vuelve a donde empezo (E.S.)
 		getPosition().add(speed.mul(tiempoEnSec));
 		
 		Point2f pos = getPosition();

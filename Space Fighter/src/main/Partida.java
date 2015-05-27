@@ -2,8 +2,9 @@ package main;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.annotation.Generated;
 
 import es.techtalents.ttgdl.gui.window.Window;
 import es.techtalents.ttgdl.image.ImageLoader;
@@ -11,9 +12,9 @@ import es.techtalents.ttgdl.sound.Sound;
 
 public class Partida extends Window{
 	private Game game;
-	private int intervaloEnemigos =2000;
+	private int intervaloEnemigos =1500;
 	private long tiempoAnterior;
-
+	private List<Enemigo> enemigos = new ArrayList<>();
 
 	public Partida(Game game, int dificultad){
 		Image img=null;
@@ -78,13 +79,22 @@ public class Partida extends Window{
 		if(tiempoTranscurrido > intervaloEnemigos){
 			Enemigo e = new EnemigoSoldado(this);
 			addSprite(e);
+			enemigos.add(e);
 			float y = (float) (Math.random() * (Game.HEIGHT - e.getHeight()));
 			e.setPosition(Game.WIDTH, y);
 			tiempoAnterior = tiempoActual;
 		}
 	}
 
+	public List<Enemigo> getEnemigos(){
+		return enemigos;
+		
+	}
 
+	public void removeEnemy(Enemigo enemigo){
+		enemigos.remove(enemigos);
+		removeSprite(enemigo);
+	}
 
 
 

@@ -5,8 +5,8 @@ import es.techtalents.ttgdl.sprite.Sprite;
 
 public abstract class Enemigo extends Sprite{
 
-	private Vector2f speed =new Vector2f(0, 0) ; 
-	
+	private Vector2f speed = new Vector2f(0, 0) ; 
+	private int puntosDeVida = 100;
 	
 	
 	@Override
@@ -28,7 +28,19 @@ public abstract class Enemigo extends Sprite{
 		this.speed = speed;
 	} 
 		
-		
+	public boolean isDead(){
+		if(puntosDeVida <= 0){
+			return true;
+		}
+		return false;
+	}
 	
+	public int getPuntosDeVida() {
+		return puntosDeVida;
+	}
 	
+	public void setPuntosDeVida(int puntosDeVida){
+		this.puntosDeVida = puntosDeVida;
+	}
+	 
 }
