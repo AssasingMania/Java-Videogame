@@ -29,7 +29,7 @@ public class Nave extends Sprite{
 		this.p = w;
 		a = new ArmaLaser(p);
 		a.setTiempoDeRecarga(250);
-		Image imgNave = ImageLoader.loadImage("Imagenes/IMAGENES/nave222333.jpg");
+		Image imgNave = ImageLoader.loadImage("Imagenes/IMAGENES/");
 		imgNave = imgNave.getScaledInstance(Game.WIDTH/15, Game.HEIGHT/5, Image.SCALE_SMOOTH);
 		setImage(imgNave);
 		setVisible(true);

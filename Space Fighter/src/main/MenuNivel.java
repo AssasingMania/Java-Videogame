@@ -14,7 +14,7 @@ public class MenuNivel extends Window{
 		this.game = game;
 		setWidth(Game.WIDTH);
 		setHeight(Game.HEIGHT);
-		Image backgroundJugar = ImageLoader.loadImage("Imagenes/Background para Jugar.jpg");
+		Image backgroundJugar = ImageLoader.loadImage("Imagenes/background easy (2).jpg");
 		backgroundJugar =backgroundJugar.getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 		setBackgroundImage(backgroundJugar);
 		crearBotones();

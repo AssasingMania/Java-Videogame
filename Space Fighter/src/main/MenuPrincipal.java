@@ -15,7 +15,7 @@ public class MenuPrincipal extends Window{
 		this.game = game;
 		setWidth(Game.WIDTH);
 		setHeight(Game.HEIGHT);
-		Image backgroundMenuPrincipal = ImageLoader.loadImage("Imagenes/background.jpg");
+		Image backgroundMenuPrincipal = ImageLoader.loadImage("Imagenes/background easy.jpg");
 		backgroundMenuPrincipal =backgroundMenuPrincipal.getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 		setBackgroundImage(backgroundMenuPrincipal);
 		crearBotones();
