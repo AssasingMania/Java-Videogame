@@ -1,20 +1,27 @@
 package main;
 
+import java.awt.Checkbox;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 
+
+
+import es.techtalents.ttgdl.geom.Point2f;
 import es.techtalents.ttgdl.gui.window.Window;
 import es.techtalents.ttgdl.image.ImageLoader;
 import es.techtalents.ttgdl.sound.Sound;
+import es.techtalents.ttgdl.sprite.Sprite;
 
 public class Partida extends Window{
 	private Game game;
-	private int intervaloEnemigos =1500;
+	private int intervaloEnemigos = 1500;
 	private long tiempoAnterior;
 	private List<Enemigo> enemigos = new ArrayList<>();
+	private Nave nave;
+
 
 	public Partida(Game game, int dificultad){
 		Image img=null;
@@ -24,24 +31,25 @@ public class Partida extends Window{
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/2f3058_2959908.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s = new Sound("MUSICA/[Electro_-_Arion_-_Cold_Blood_and_Ice_Cream_Cones_.wav", 1);
 			s.start();
+			
 		}
 
 		//Medium
-		if(dificultad == 1 ){
+		if(dificultad == 1){
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/lol.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s2 = new Sound("MUSICA/Jetta_-_I_39_d_Love_to_Change_the_World_Matstubs_R.wav", 1);
 			s2.start();
 		}
 
 		//Dificil
-		if(dificultad == 2 ){
+		if(dificultad == 2){
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/background hard.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s3 = new Sound("MUSICA/K-391_-_Summertime_[Sunshine_.wav", 1);
 			s3.start();
 		}
 
 		//Impossible
-		if(dificultad == 3 ){
+		if(dificultad == 3){
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/yeah.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s4 = new Sound("MUSICA/Two_Steps_From_Hell_-_SkyWorld_SkyWorld_.wav", 1);
 			s4.start();
@@ -53,8 +61,10 @@ public class Partida extends Window{
 
 		setVisible(true);
 
-		Nave nave = new Nave( this);
+		nave = new Nave(this);
 		addSprite(nave);
+		
+		intervaloEnemigos = 1000 - dificultad*250;
 
 	}
 
@@ -68,6 +78,7 @@ public class Partida extends Window{
 
 	@Override
 	protected void act() {
+		comprobarColisiones();
 		super.act();
 		long tiempoActual = System.currentTimeMillis();
 		long tiempoTranscurrido = tiempoActual - tiempoAnterior;
@@ -75,7 +86,7 @@ public class Partida extends Window{
 			tiempoAnterior = tiempoActual;
 			return;
 		}
-		
+
 		if(tiempoTranscurrido > intervaloEnemigos){
 			Enemigo e = new EnemigoSoldado(this);
 			addSprite(e);
@@ -86,9 +97,25 @@ public class Partida extends Window{
 		}
 	}
 
+	private void comprobarColisiones() {
+		if(nave != null){
+			for(Enemigo e : enemigos){
+				if(e.checkCollision(nave)){
+					Point2f pos = new Point2f(nave.getPosition());
+					Sprite explosion = new Explosion(this, pos.add(nave.getWidth()/2, nave.getHeight()/2)); 
+					this.addSprite(explosion);
+					removeSprite(nave);
+					nave = null;
+					return;
+					
+				}
+			}
+		}
+	}
+
 	public List<Enemigo> getEnemigos(){
 		return enemigos;
-		
+
 	}
 
 	public void removeEnemy(Enemigo enemigo){
@@ -106,3 +133,4 @@ public class Partida extends Window{
 
 
 }
+
