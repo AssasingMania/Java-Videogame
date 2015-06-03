@@ -9,20 +9,18 @@ import es.techtalents.ttgdl.image.ImageLoader;
 import es.techtalents.ttgdl.sprite.Sprite;
 
 public class Boss extends Enemigo{
-	private Window window;
 	private long tiempoAnterior;
-
-
+	private Window window;
 
 
 	public Boss(Window window){
 		this.window = window;
-		Image img = ImageLoader.loadImage("Imagenes/POSIBLISIMA NAVE ENEMIGA.png");//.getScaledInstance(Game.WIDTH/10, Game.HEIGHT/10, Image.SCALE_SMOOTH);
+		Image img = ImageLoader.loadImage("Imagenes/IMAGENES/POSIBLISIMA NAVE ENEMIGA.png");
 		setImage(img);
 		setVisible(true);
 		setPosition(Game.WIDTH-Game.WIDTH/3, Game.HEIGHT/2);
 		setSpeed(new Vector2f(-300,-300));
-		setPuntosDeVida(10); 
+		
 	}
 	
 	
@@ -73,6 +71,5 @@ public class Boss extends Enemigo{
 		}
 		
 	}
-	
 
 }

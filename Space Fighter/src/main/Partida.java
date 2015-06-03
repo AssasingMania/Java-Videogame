@@ -23,6 +23,11 @@ public class Partida extends Window{
 	private int numEnemigos;
 	private int limiteEnemigos = 10;
 	private Boss boss;
+	private int vidaBoss;
+	private int vidaEsbirro1;
+	private int vidaEsbirro2;
+	private Esbirro1 esbirro1;
+	private Esbirro2 esbirro2;
 
 
 	public Partida(Game game, int dificultad){
@@ -34,6 +39,9 @@ public class Partida extends Window{
 			Sound s = new Sound("MUSICA/[Electro_-_Arion_-_Cold_Blood_and_Ice_Cream_Cones_.wav", 1);
 			s.start();
 			limiteEnemigos = 20;
+			vidaBoss = 20;
+			vidaEsbirro1 = 10;
+			vidaEsbirro2 = 15;
 		}
 
 		//Medium
@@ -42,6 +50,9 @@ public class Partida extends Window{
 			Sound s2 = new Sound("MUSICA/Jetta_-_I_39_d_Love_to_Change_the_World_Matstubs_R.wav", 1);
 			s2.start();
 			limiteEnemigos = 50;
+			vidaBoss = 50;
+			vidaEsbirro1 = 25;
+			vidaEsbirro2 = 30;
 		}
 
 		//Dificil
@@ -50,6 +61,9 @@ public class Partida extends Window{
 			Sound s3 = new Sound("MUSICA/K-391_-_Summertime_[Sunshine_.wav", 1);
 			s3.start();
 			limiteEnemigos = 100;
+			vidaBoss = 100;
+			vidaEsbirro1 = 50;
+			vidaEsbirro2 = 55;
 		}
 
 		//Impossible
@@ -58,6 +72,9 @@ public class Partida extends Window{
 			Sound s4 = new Sound("MUSICA/Two_Steps_From_Hell_-_SkyWorld_SkyWorld_.wav", 1);
 			s4.start();
 			limiteEnemigos = 2147483647;
+			vidaBoss = 2147483647;
+			vidaEsbirro1 = 1073741823;
+			vidaEsbirro2 = 1073741828;
 		}   
 
 		setBackgroundImage(img);
@@ -101,11 +118,24 @@ public class Partida extends Window{
 			float y = (float) (Math.random() * (Game.HEIGHT - e.getHeight()));
 			e.setPosition(Game.WIDTH, y);
 			tiempoAnterior = tiempoActual;
-		}else if(numEnemigos >= limiteEnemigos && boss == null && enemigos.isEmpty()){
+		}else if(numEnemigos >= limiteEnemigos && enemigos.isEmpty() && esbirro1 == null){
+			esbirro1 = new Esbirro1(this);
+			addSprite(esbirro1);
+			esbirro1.setPuntosDeVida(vidaEsbirro1);
+			enemigos.add(esbirro1);
+		}else if(numEnemigos >= limiteEnemigos && enemigos.isEmpty() && esbirro1 != null && esbirro2 == null){
+			esbirro2 = new Esbirro2(this);
+			addSprite(esbirro2);
+			esbirro2.setPuntosDeVida(vidaEsbirro2);
+			enemigos.add(esbirro2);
+		}else if(numEnemigos >= limiteEnemigos && enemigos.isEmpty() && esbirro1 != null && esbirro2 != null && boss == null){
 			boss = new Boss(this);
 			addSprite(boss);
+			boss.setPuntosDeVida(vidaBoss);
 			enemigos.add(boss);
 		}
+		
+		
 	}
 
 	private void comprobarColisiones() {
