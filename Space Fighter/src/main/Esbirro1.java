@@ -19,7 +19,7 @@ public class Esbirro1 extends Enemigo{
 		setImage(img);
 		setVisible(true);
 		setPosition(Game.WIDTH-Game.WIDTH/3, Game.HEIGHT/2);
-		setSpeed(new Vector2f(-300,-300));
+		
 		
 	}
 	

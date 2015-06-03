@@ -2,13 +2,17 @@ package main;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
 
 
 
+
+
 import es.techtalents.ttgdl.geom.Point2f;
+import es.techtalents.ttgdl.geom.Vector2f;
 import es.techtalents.ttgdl.gui.window.Window;
 import es.techtalents.ttgdl.image.ImageLoader;
 import es.techtalents.ttgdl.sound.Sound;
@@ -28,56 +32,73 @@ public class Partida extends Window{
 	private int vidaEsbirro2;
 	private Esbirro1 esbirro1;
 	private Esbirro2 esbirro2;
+	private Vector2f velesbirro1;
+	private Vector2f velesbirro2;
+	private Sound s;
+	private Sound s2;
+	private Image img;
+	private Object img2;
 
 
 	public Partida(Game game, int dificultad){
-		Image img=null;
+		img2=null;
 		this.game = game;
 		//Easy
 		if(dificultad == 0 ){
-			img = ImageLoader.loadImage("Imagenes/IMAGENES/2f3058_2959908.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
-			Sound s = new Sound("MUSICA/[Electro_-_Arion_-_Cold_Blood_and_Ice_Cream_Cones_.wav", 1);
+			img2 = ImageLoader.loadImage("Imagenes/IMAGENES/2f3058_2959908.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			s = new Sound("MUSICA/SUPER_SMASH_BROS_RAP_-_KEYBLADE_-_ZARCORT_-_SHARKN.wav", 1);
 			s.start();
-			limiteEnemigos = 20;
-			vidaBoss = 20;
-			vidaEsbirro1 = 10;
-			vidaEsbirro2 = 15;
+			limiteEnemigos = 2;
+			vidaBoss = 2;
+			vidaEsbirro1 = 1;
+			vidaEsbirro2 = 1;
+			velesbirro1 = new Vector2f(-200,-200);
+			velesbirro2 = new Vector2f(-300,-300);
+			s.stopAll();
+			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
+			
 		}
 
 		//Medium
 		if(dificultad == 1){
-			img = ImageLoader.loadImage("Imagenes/IMAGENES/lol.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
-			Sound s2 = new Sound("MUSICA/Jetta_-_I_39_d_Love_to_Change_the_World_Matstubs_R.wav", 1);
-			s2.start();
+			img2 = ImageLoader.loadImage("Imagenes/IMAGENES/lol.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			s = new Sound("MUSICA/CALL_OF_DUTY_ADVANCED_WARFARE_-_ZARCORT_CYCLO_Y_PI.wav", 1);
+			s.start();
 			limiteEnemigos = 50;
 			vidaBoss = 50;
 			vidaEsbirro1 = 25;
 			vidaEsbirro2 = 30;
+			velesbirro1 = new Vector2f(-300,-300);
+			velesbirro2 = new Vector2f(-400,-400);
 		}
 
 		//Dificil
 		if(dificultad == 2){
-			img = ImageLoader.loadImage("Imagenes/IMAGENES/background hard.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
-			Sound s3 = new Sound("MUSICA/K-391_-_Summertime_[Sunshine_.wav", 1);
-			s3.start();
+			img2 = ImageLoader.loadImage("Imagenes/IMAGENES/background hard.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			s = new Sound("MUSICA/BLOODBORNE_EPIC_RAP_-_ZARCORT.wav", 1);
+			s.start();
 			limiteEnemigos = 100;
 			vidaBoss = 100;
 			vidaEsbirro1 = 50;
 			vidaEsbirro2 = 55;
+			velesbirro1 = new Vector2f(-400,-400);
+			velesbirro2 = new Vector2f(-500,-500);
 		}
 
 		//Impossible
 		if(dificultad == 3){
-			img = ImageLoader.loadImage("Imagenes/IMAGENES/yeah.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
-			Sound s4 = new Sound("MUSICA/Two_Steps_From_Hell_-_SkyWorld_SkyWorld_.wav", 1);
-			s4.start();
+			img2 = ImageLoader.loadImage("Imagenes/IMAGENES/yeah.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			s = new Sound("MUSICA/JUEGO_DE_TRONOS_RAP_-_ZARCORT_Y_FER_-_PARODIA.wav", 1);
+			s.start();
 			limiteEnemigos = 2147483647;
 			vidaBoss = 2147483647;
 			vidaEsbirro1 = 1073741823;
 			vidaEsbirro2 = 1073741828;
+			velesbirro1 = new Vector2f(-700,-700);
+			velesbirro2 = new Vector2f(-800,-800);
 		}   
 
-		setBackgroundImage(img);
+		setBackgroundImage((Image) img2);
 		setHeight(Game.HEIGHT);
 		setWidth(Game.WIDTH);
 
@@ -85,9 +106,9 @@ public class Partida extends Window{
 
 		nave = new Nave(this);
 		addSprite(nave);
-		
+
 		intervaloEnemigos = 1000 - dificultad*250;
-		
+
 
 	}
 
@@ -96,6 +117,8 @@ public class Partida extends Window{
 		super.onKeyPress(keyCode);
 		if(keyCode == KeyEvent.VK_ESCAPE){
 			game.showMainMenu();
+			s.stopAll();
+			s2.stopAll();
 		}
 	}
 
@@ -120,11 +143,13 @@ public class Partida extends Window{
 			tiempoAnterior = tiempoActual;
 		}else if(numEnemigos >= limiteEnemigos && enemigos.isEmpty() && esbirro1 == null){
 			esbirro1 = new Esbirro1(this);
+			esbirro1.setSpeed(new Vector2f(-300,-300));
 			addSprite(esbirro1);
 			esbirro1.setPuntosDeVida(vidaEsbirro1);
 			enemigos.add(esbirro1);
 		}else if(numEnemigos >= limiteEnemigos && enemigos.isEmpty() && esbirro1 != null && esbirro2 == null){
 			esbirro2 = new Esbirro2(this);
+			esbirro2.setSpeed(new Vector2f(-400,00));
 			addSprite(esbirro2);
 			esbirro2.setPuntosDeVida(vidaEsbirro2);
 			enemigos.add(esbirro2);
@@ -134,8 +159,12 @@ public class Partida extends Window{
 			boss.setPuntosDeVida(vidaBoss);
 			enemigos.add(boss);
 		}
-		
-		
+		if(boss !=  null && boss.isDead()){
+			s2.start();
+			setBackgroundImage(ImageLoader.loadImage("Imagenes/IMAGENES/youwin.png"));
+		}
+
+
 	}
 
 	private void comprobarColisiones() {
@@ -148,7 +177,7 @@ public class Partida extends Window{
 					removeSprite(nave);
 					nave = null;
 					return;
-					
+
 				}
 			}
 		}
