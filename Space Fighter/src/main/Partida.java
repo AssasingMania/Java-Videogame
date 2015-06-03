@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Checkbox;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -21,6 +20,9 @@ public class Partida extends Window{
 	private long tiempoAnterior;
 	private List<Enemigo> enemigos = new ArrayList<>();
 	private Nave nave;
+	private int numEnemigos;
+	private int limiteEnemigos = 10;
+	private Boss boss;
 
 
 	public Partida(Game game, int dificultad){
@@ -31,7 +33,7 @@ public class Partida extends Window{
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/2f3058_2959908.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s = new Sound("MUSICA/[Electro_-_Arion_-_Cold_Blood_and_Ice_Cream_Cones_.wav", 1);
 			s.start();
-			
+			limiteEnemigos = 20;
 		}
 
 		//Medium
@@ -39,6 +41,7 @@ public class Partida extends Window{
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/lol.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s2 = new Sound("MUSICA/Jetta_-_I_39_d_Love_to_Change_the_World_Matstubs_R.wav", 1);
 			s2.start();
+			limiteEnemigos = 50;
 		}
 
 		//Dificil
@@ -46,6 +49,7 @@ public class Partida extends Window{
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/background hard.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s3 = new Sound("MUSICA/K-391_-_Summertime_[Sunshine_.wav", 1);
 			s3.start();
+			limiteEnemigos = 100;
 		}
 
 		//Impossible
@@ -53,7 +57,8 @@ public class Partida extends Window{
 			img = ImageLoader.loadImage("Imagenes/IMAGENES/yeah.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			Sound s4 = new Sound("MUSICA/Two_Steps_From_Hell_-_SkyWorld_SkyWorld_.wav", 1);
 			s4.start();
-		}
+			limiteEnemigos = 2147483647;
+		}   
 
 		setBackgroundImage(img);
 		setHeight(Game.HEIGHT);
@@ -65,6 +70,7 @@ public class Partida extends Window{
 		addSprite(nave);
 		
 		intervaloEnemigos = 1000 - dificultad*250;
+		
 
 	}
 
@@ -87,13 +93,18 @@ public class Partida extends Window{
 			return;
 		}
 
-		if(tiempoTranscurrido > intervaloEnemigos){
+		if(tiempoTranscurrido > intervaloEnemigos && numEnemigos < limiteEnemigos){
 			Enemigo e = new EnemigoSoldado(this);
+			numEnemigos++;
 			addSprite(e);
 			enemigos.add(e);
 			float y = (float) (Math.random() * (Game.HEIGHT - e.getHeight()));
 			e.setPosition(Game.WIDTH, y);
 			tiempoAnterior = tiempoActual;
+		}else if(numEnemigos >= limiteEnemigos && boss == null && enemigos.isEmpty()){
+			boss = new Boss(this);
+			addSprite(boss);
+			enemigos.add(boss);
 		}
 	}
 

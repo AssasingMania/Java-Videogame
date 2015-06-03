@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 
 import es.techtalents.ttgdl.geom.Point2f;
 import es.techtalents.ttgdl.geom.Vector2f;
@@ -24,6 +25,7 @@ public class Nave extends Sprite{
 	private long tiempoAnterior;
 
 	private boolean shooting;
+
 
 	public Nave(Window w){
 		this.p = w;
@@ -60,9 +62,6 @@ public class Nave extends Sprite{
 		if(keyCode == KeyEvent.VK_SPACE){
 			shooting = true;
 		}
-
-
-
 
 	}
 
