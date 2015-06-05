@@ -11,9 +11,12 @@ import es.techtalents.ttgdl.sprite.Sprite;
 public class Boss extends Enemigo{
 	private long tiempoAnterior;
 	private Window window;
+	private ArmaLaserEnemigo arma;
 
 
 	public Boss(Window window){
+		this.arma = new ArmaLaserEnemigo(window);
+		arma.setTiempoDeRecarga(450);
 		this.window = window;
 		Image img = ImageLoader.loadImage("Imagenes/IMAGENES/POSIBLISIMA NAVE ENEMIGA.png");
 		setImage(img);
@@ -25,6 +28,19 @@ public class Boss extends Enemigo{
 	
 	
 	
+	@Override
+	public void act() {
+		super.act();
+		shoot();
+	}
+
+	private void shoot() {
+		if(arma.canShoot()){
+			arma.shoot(getPosition());
+		}
+
+	}
+
 	@Override
 	public void move() {
 		long tiempoActual = System.currentTimeMillis();

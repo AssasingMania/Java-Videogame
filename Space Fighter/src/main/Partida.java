@@ -11,6 +11,7 @@ import java.util.List;
 
 
 
+
 import es.techtalents.ttgdl.geom.Point2f;
 import es.techtalents.ttgdl.geom.Vector2f;
 import es.techtalents.ttgdl.gui.window.Window;
@@ -37,8 +38,8 @@ public class Partida extends Window{
 	private Sound s;
 	private Sound s2;
 	private Image img;
-	private Object img2;
-
+	private Image img2;
+	private boolean troll = false;
 
 	public Partida(Game game, int dificultad){
 		img2=null;
@@ -49,14 +50,15 @@ public class Partida extends Window{
 			s = new Sound("MUSICA/SUPER_SMASH_BROS_RAP_-_KEYBLADE_-_ZARCORT_-_SHARKN.wav", 1);
 			s.start();
 			limiteEnemigos = 2;
-			vidaBoss = 2;
-			vidaEsbirro1 = 1;
+			vidaBoss = 20;
+			vidaEsbirro1 = 10;
 			vidaEsbirro2 = 1;
 			velesbirro1 = new Vector2f(-200,-200);
 			velesbirro2 = new Vector2f(-300,-300);
 			s.stopAll();
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
-			
+
+
 		}
 
 		//Medium
@@ -70,6 +72,7 @@ public class Partida extends Window{
 			vidaEsbirro2 = 30;
 			velesbirro1 = new Vector2f(-300,-300);
 			velesbirro2 = new Vector2f(-400,-400);
+			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
 		}
 
 		//Dificil
@@ -83,6 +86,7 @@ public class Partida extends Window{
 			vidaEsbirro2 = 55;
 			velesbirro1 = new Vector2f(-400,-400);
 			velesbirro2 = new Vector2f(-500,-500);
+			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
 		}
 
 		//Impossible
@@ -96,6 +100,7 @@ public class Partida extends Window{
 			vidaEsbirro2 = 1073741828;
 			velesbirro1 = new Vector2f(-700,-700);
 			velesbirro2 = new Vector2f(-800,-800);
+			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
 		}   
 
 		setBackgroundImage((Image) img2);
@@ -120,10 +125,18 @@ public class Partida extends Window{
 			s.stopAll();
 			s2.stopAll();
 		}
+
 	}
 
 	@Override
 	protected void act() {
+		if(troll){
+			limiteEnemigos = 10;
+			vidaBoss = 1;
+			vidaEsbirro1 = 1;
+			vidaEsbirro2 = 1;
+
+		}
 		comprobarColisiones();
 		super.act();
 		long tiempoActual = System.currentTimeMillis();
@@ -171,15 +184,21 @@ public class Partida extends Window{
 		if(nave != null){
 			for(Enemigo e : enemigos){
 				if(e.checkCollision(nave)){
-					Point2f pos = new Point2f(nave.getPosition());
-					Sprite explosion = new Explosion(this, pos.add(nave.getWidth()/2, nave.getHeight()/2)); 
-					this.addSprite(explosion);
-					removeSprite(nave);
-					nave = null;
+					matarNave();
 					return;
 
 				}
 			}
+		}
+	}
+
+	public void matarNave() {
+		if(nave!=null){
+			Point2f pos = new Point2f(nave.getPosition());
+			Sprite explosion = new Explosion(this, pos.add(nave.getWidth()/2, nave.getHeight()/2)); 
+			this.addSprite(explosion);
+			removeSprite(nave);
+			nave = null;
 		}
 	}
 
@@ -195,7 +214,9 @@ public class Partida extends Window{
 
 
 
-
+	public Nave getNave() {
+		return nave;
+	}
 
 
 
