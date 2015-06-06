@@ -11,16 +11,32 @@ import es.techtalents.ttgdl.sprite.Sprite;
 public class Esbirro1 extends Enemigo{
 	private long tiempoAnterior;
 	private Window window;
+	private Arma arma;
 
 
 	public Esbirro1(Window window){
 		this.window = window;
+		arma = new ArmaLaserEsbirro1(window);
+		arma.setTiempoDeRecarga(850);
 		Image img = ImageLoader.loadImage("Imagenes/IMAGENES/esbirro1.png");
 		setImage(img);
 		setVisible(true);
 		setPosition(Game.WIDTH-Game.WIDTH/3, Game.HEIGHT/2);
 		
 		
+	}
+	
+	@Override
+	public void act() {
+		super.act();
+		shoot();
+	}
+
+	private void shoot() {
+		if(arma.canShoot()){
+			arma.shoot(getPosition());
+		}
+
 	}
 	
 	
@@ -70,6 +86,10 @@ public class Esbirro1 extends Enemigo{
 			}
 		}
 		
+	}
+
+	public void setTiempoDeRecarga(int tiempRecargaEsbirro1) {
+		this.arma.setTiempoDeRecarga(tiempRecargaEsbirro1);
 	}
 
 }

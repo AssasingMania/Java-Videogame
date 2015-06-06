@@ -11,12 +11,12 @@ import es.techtalents.ttgdl.sprite.Sprite;
 public class Boss extends Enemigo{
 	private long tiempoAnterior;
 	private Window window;
-	private ArmaLaserEnemigo arma;
+	private ArmaLaserBoss arma;
 
 
 	public Boss(Window window){
-		this.arma = new ArmaLaserEnemigo(window);
-		arma.setTiempoDeRecarga(450);
+		this.arma = new ArmaLaserBoss(window);
+		arma.setTiempoDeRecarga(850);
 		this.window = window;
 		Image img = ImageLoader.loadImage("Imagenes/IMAGENES/POSIBLISIMA NAVE ENEMIGA.png");
 		setImage(img);
@@ -43,6 +43,7 @@ public class Boss extends Enemigo{
 
 	@Override
 	public void move() {
+		
 		long tiempoActual = System.currentTimeMillis();
 		long tiempoTranscurrido = tiempoActual - tiempoAnterior;
 		tiempoAnterior = tiempoActual;
@@ -86,6 +87,12 @@ public class Boss extends Enemigo{
 			}
 		}
 		
+	}
+
+
+
+	public void setTiempoDeRecarga(int tiempRecargaBoss) {
+		this.arma.setTiempoDeRecarga(tiempRecargaBoss);
 	}
 
 }

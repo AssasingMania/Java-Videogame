@@ -24,8 +24,8 @@ public class MenuPrincipal extends Window{
 	private void crearBotones() {
 
 		//JUGAR
-		Image jugar1 = ImageLoader.loadImage("Imagenes/JUGAR1.png");
-		Image jugar2 = ImageLoader.loadImage("Imagenes/JUGAR2.png");
+		Image jugar1 = ImageLoader.loadImage("buttons/jugar1.png");
+		Image jugar2 = ImageLoader.loadImage("buttons/jugar2.png");
 		Button botonJugar = new Button(jugar1, jugar2){
 
 			@Override
@@ -37,7 +37,7 @@ public class MenuPrincipal extends Window{
 		};
 		float hBoton = botonJugar.getHeight();
 		float btSp = 10;
-		float hMenu = hBoton*3 + btSp;
+		float hMenu = hBoton*4 + btSp;
 		float x = Game.WIDTH/2 - botonJugar.getWidth()/2;
 		float y = Game.HEIGHT/2 - hMenu/2;
 
@@ -47,8 +47,8 @@ public class MenuPrincipal extends Window{
 		addSprite(botonJugar);
 
 		//TIENDA
-		Image tienda1 = ImageLoader.loadImage("Imagenes/TIENDA1.png");
-		Image tienda2 = ImageLoader.loadImage("Imagenes/TIENDA2.png");
+		Image tienda1 = ImageLoader.loadImage("buttons/tienda1.png");
+		Image tienda2 = ImageLoader.loadImage("buttons/tienda2.png");
 		Button botonTienda = new Button(tienda1, tienda2){
 
 			@Override
@@ -65,8 +65,8 @@ public class MenuPrincipal extends Window{
 		addSprite(botonTienda);
 
 		//EXIT
-		Image exit1 = ImageLoader.loadImage("Imagenes/EXIT2.png");
-		Image exit2 = ImageLoader.loadImage("Imagenes/EXIT1.png");
+		Image exit1 = ImageLoader.loadImage("buttons/exit1.png");
+		Image exit2 = ImageLoader.loadImage("buttons/exit2.png");
 		Button botonExit = new Button(exit1, exit2){
 
 			@Override
@@ -81,6 +81,24 @@ public class MenuPrincipal extends Window{
 		botonExit.setVisible(true);
 		botonExit.setEnabled(true);
 		addSprite(botonExit);
+		
+		//Instruccionnes
+		Image instrucctions1 = ImageLoader.loadImage("buttons/instrucctions1.png");
+		Image instrucctions2 = ImageLoader.loadImage("buttons/instrucctions2.png");
+		Button botonInstucctions = new Button(instrucctions1, instrucctions2){
+
+			@Override
+			public void click() {
+				System.exit(0);
+			}
+
+		};
+		y = y + hBoton + btSp;
+		x = Game.WIDTH/2 - botonInstucctions.getWidth()/2;
+		botonInstucctions.setPosition(x, y);
+		botonInstucctions.setVisible(true);
+		botonInstucctions.setEnabled(true);
+		addSprite(botonInstucctions);
 	}
 
 	@Override

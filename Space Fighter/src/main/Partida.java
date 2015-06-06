@@ -35,6 +35,8 @@ public class Partida extends Window{
 	private Esbirro2 esbirro2;
 	private Vector2f velesbirro1;
 	private Vector2f velesbirro2;
+	private int tiempRecargaBoss;
+	private int tiempRecargaEsbirro1;
 	private Sound s;
 	private Sound s2;
 	private Image img;
@@ -46,7 +48,7 @@ public class Partida extends Window{
 		this.game = game;
 		//Easy
 		if(dificultad == 0 ){
-			img2 = ImageLoader.loadImage("Imagenes/IMAGENES/2f3058_2959908.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
+			img2 = ImageLoader.loadImage("Imagenes/jiji.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			s = new Sound("MUSICA/SUPER_SMASH_BROS_RAP_-_KEYBLADE_-_ZARCORT_-_SHARKN.wav", 1);
 			s.start();
 			limiteEnemigos = 2;
@@ -55,9 +57,10 @@ public class Partida extends Window{
 			vidaEsbirro2 = 1;
 			velesbirro1 = new Vector2f(-200,-200);
 			velesbirro2 = new Vector2f(-300,-300);
-			s.stopAll();
+			tiempRecargaBoss=900;
+			tiempRecargaEsbirro1=1000;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
-
+			
 
 		}
 
@@ -72,6 +75,8 @@ public class Partida extends Window{
 			vidaEsbirro2 = 30;
 			velesbirro1 = new Vector2f(-300,-300);
 			velesbirro2 = new Vector2f(-400,-400);
+			tiempRecargaBoss=700;
+			tiempRecargaEsbirro1=900;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
 		}
 
@@ -86,6 +91,8 @@ public class Partida extends Window{
 			vidaEsbirro2 = 55;
 			velesbirro1 = new Vector2f(-400,-400);
 			velesbirro2 = new Vector2f(-500,-500);
+			tiempRecargaBoss=600;
+			tiempRecargaEsbirro1=850;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
 		}
 
@@ -100,6 +107,8 @@ public class Partida extends Window{
 			vidaEsbirro2 = 1073741828;
 			velesbirro1 = new Vector2f(-700,-700);
 			velesbirro2 = new Vector2f(-800,-800);
+			tiempRecargaBoss=100;
+			tiempRecargaEsbirro1=500;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
 		}   
 
@@ -130,10 +139,10 @@ public class Partida extends Window{
 
 	@Override
 	protected void act() {
-		if(troll){
-			limiteEnemigos = 10;
-			vidaBoss = 1;
-			vidaEsbirro1 = 1;
+		if(troll == true){
+			limiteEnemigos = 0;
+			vidaBoss = 5;
+			vidaEsbirro1 = 5;
 			vidaEsbirro2 = 1;
 
 		}
@@ -159,6 +168,7 @@ public class Partida extends Window{
 			esbirro1.setSpeed(new Vector2f(-300,-300));
 			addSprite(esbirro1);
 			esbirro1.setPuntosDeVida(vidaEsbirro1);
+			esbirro1.setTiempoDeRecarga(tiempRecargaEsbirro1);
 			enemigos.add(esbirro1);
 		}else if(numEnemigos >= limiteEnemigos && enemigos.isEmpty() && esbirro1 != null && esbirro2 == null){
 			esbirro2 = new Esbirro2(this);
@@ -170,9 +180,11 @@ public class Partida extends Window{
 			boss = new Boss(this);
 			addSprite(boss);
 			boss.setPuntosDeVida(vidaBoss);
+			boss.setTiempoDeRecarga(tiempRecargaBoss);
 			enemigos.add(boss);
 		}
 		if(boss !=  null && boss.isDead()){
+			s.stopAll();
 			s2.start();
 			setBackgroundImage(ImageLoader.loadImage("Imagenes/IMAGENES/youwin.png"));
 		}
