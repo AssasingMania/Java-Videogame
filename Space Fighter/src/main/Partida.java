@@ -51,10 +51,10 @@ public class Partida extends Window{
 			img2 = ImageLoader.loadImage("Imagenes/jiji.jpg").getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 			s = new Sound("MUSICA/SUPER_SMASH_BROS_RAP_-_KEYBLADE_-_ZARCORT_-_SHARKN.wav", 1);
 			s.start();
-			limiteEnemigos = 2;
+			limiteEnemigos = 20;
 			vidaBoss = 20;
 			vidaEsbirro1 = 10;
-			vidaEsbirro2 = 1;
+			vidaEsbirro2 = 15;
 			velesbirro1 = new Vector2f(-200,-200);
 			velesbirro2 = new Vector2f(-300,-300);
 			tiempRecargaBoss=900;

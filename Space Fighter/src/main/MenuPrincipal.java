@@ -89,7 +89,7 @@ public class MenuPrincipal extends Window{
 
 			@Override
 			public void click() {
-				System.exit(0);
+				game.showInstrucctions();
 			}
 
 		};

@@ -8,6 +8,7 @@ public class Game extends MainWindow{
 	private MenuNivel nivel = new MenuNivel(this);
 	private Tienda tienda = new Tienda(this);
 	private Partida partida;
+	private Instrucctions instrucctions = new Instrucctions(this);
 
 	public Game(){
 		showMainMenu();
@@ -54,4 +55,15 @@ public class Game extends MainWindow{
 		addWindow(partida);
 		partida.setVisible(true);
 	}
+	public void showInstrucctions() {
+		removeWindow(menuPrincipal);
+		removeWindow(tienda);
+		if(partida != null){
+			removeWindow(partida);
+		}
+		removeWindow(nivel);
+		addWindow(instrucctions);
+		instrucctions.setVisible(true);
+	}
 }
+

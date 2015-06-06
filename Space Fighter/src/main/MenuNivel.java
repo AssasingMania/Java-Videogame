@@ -23,8 +23,8 @@ public class MenuNivel extends Window{
 	private void crearBotones() {
 
 		//EASY
-		Image easy1 = ImageLoader.loadImage("Imagenes/EASY.png");
-		Image easy2 = ImageLoader.loadImage("Imagenes/EASY2.png");
+		Image easy1 = ImageLoader.loadImage("buttons/easy1.png");
+		Image easy2 = ImageLoader.loadImage("buttons/easy2.png");
 		Button botonEasy = new Button(easy1, easy2){
 
 			@Override
@@ -45,8 +45,8 @@ public class MenuNivel extends Window{
 		addSprite(botonEasy);
 
 		//Medium
-		Image medium1 = ImageLoader.loadImage("Imagenes/MEDIUM1.png");
-		Image medium2 = ImageLoader.loadImage("Imagenes/MEDIUM2.png");
+		Image medium1 = ImageLoader.loadImage("buttons/medium1.png");
+		Image medium2 = ImageLoader.loadImage("buttons/medium2.png");
 		Button botonMedium = new Button(medium1, medium2){
 
 			@Override
@@ -63,8 +63,8 @@ public class MenuNivel extends Window{
 		addSprite(botonMedium);
 		
 		//Hard
-		Image hard1 = ImageLoader.loadImage("Imagenes/HARD.png");
-		Image hard2 = ImageLoader.loadImage("Imagenes/HARD2.png");
+		Image hard1 = ImageLoader.loadImage("buttons/hard1.png");
+		Image hard2 = ImageLoader.loadImage("buttons/hard2.png");
 		Button botonHard = new Button(hard1, hard2){
 
 			@Override
@@ -81,8 +81,8 @@ public class MenuNivel extends Window{
 		addSprite(botonHard);
 		
 		//Impossible
-				Image impossible1 = ImageLoader.loadImage("Imagenes/IMPOSSIBLE1.png");
-				Image impossible2 = ImageLoader.loadImage("Imagenes/IMPOSSIBLE2.png");
+				Image impossible1 = ImageLoader.loadImage("buttons/impossible1.png");
+				Image impossible2 = ImageLoader.loadImage("buttons/impossible2.png");
 				Button botonImpossible = new Button(impossible1, impossible2){
 
 					@Override
