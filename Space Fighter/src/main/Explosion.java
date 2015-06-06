@@ -13,7 +13,7 @@ import es.techtalents.ttgdl.sprite.Sprite;
 public class Explosion extends Sprite{
 
 	private static List<Image> images = loadImages();
-	private static Sound sound = new Sound("MUSICA/explosion.wav",3);
+	//private static Sound sound = new Sound("MUSICA/explosion.wav",3);
 	private long tiempoAnterior;
 	private Window window;
 	private float animationDuration = 1.0f;
@@ -33,7 +33,7 @@ public class Explosion extends Sprite{
 		long tiempoActual = System.currentTimeMillis();
 		long tiempoTranscurrido = tiempoActual - tiempoAnterior;
 		if(tiempoAnterior == 0){
-			sound.start();
+			//sound.start();
 			tiempoAnterior = tiempoActual;
 			return;
 		}

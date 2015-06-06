@@ -2,6 +2,7 @@ package main;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
 
 import es.techtalents.ttgdl.geom.Point2f;
 import es.techtalents.ttgdl.geom.Vector2f;
@@ -25,12 +26,13 @@ public class Nave extends Sprite{
 
 	private boolean shooting;
 
+
 	public Nave(Window w){
 		this.p = w;
 		a = new ArmaLaser(p);
 		a.setTiempoDeRecarga(250);
 		Image imgNave = ImageLoader.loadImage("Imagenes/spaceshipY.png");
-		imgNave = imgNave.getScaledInstance(Game.WIDTH/15, Game.HEIGHT/5, Image.SCALE_SMOOTH);
+		imgNave = imgNave.getScaledInstance(Game.WIDTH/10, Game.HEIGHT/5, Image.SCALE_SMOOTH);
 		setImage(imgNave);
 		setVisible(true);
 
@@ -60,9 +62,6 @@ public class Nave extends Sprite{
 		if(keyCode == KeyEvent.VK_SPACE){
 			shooting = true;
 		}
-
-
-
 
 	}
 
