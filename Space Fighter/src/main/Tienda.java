@@ -22,10 +22,10 @@ public class Tienda extends Window{
 		this.game = game;
 		setWidth(Game.WIDTH);
 		setHeight(Game.HEIGHT);
-		Image backgroundTienda = ImageLoader.loadImage("Imagenes/background tienda.png");
+		Image backgroundTienda = ImageLoader.loadImage("Imagenes2/background tienda99.jpg");
 		backgroundTienda =backgroundTienda.getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 		setBackgroundImage(backgroundTienda);
-		
+		crearBotones();
 		
 		
 	}
@@ -76,11 +76,8 @@ public class Tienda extends Window{
 			}
 
 		};
-		float hBoton2 = botonPower.getHeight();
-		float btSp2 = 10;
-		float hMenu2 = hBoton*3 + btSp;
-		float x2 = Game.WIDTH/2 - botonPower.getWidth()/2;
-		float y2 = Game.HEIGHT/2 - hMenu/2;
+		x = Game.WIDTH/2 - botonPower.getWidth()/2;
+		y = y + 40 + botonNaves.getHeight();
 
 		botonPower.setPosition(x, y);
 		botonPower.setVisible(true);

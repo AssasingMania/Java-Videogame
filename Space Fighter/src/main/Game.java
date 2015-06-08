@@ -1,6 +1,7 @@
 package main;
 
 import es.techtalents.ttgdl.gui.MainWindow;
+import es.techtalents.ttgdl.gui.window.Window;
 
 public class Game extends MainWindow{
 
@@ -8,8 +9,9 @@ public class Game extends MainWindow{
 	private MenuNivel nivel = new MenuNivel(this);
 	private Tienda tienda = new Tienda(this);
 	private Partida partida;
+	private Power power = new Power(this);
 	private Instrucctions instrucctions = new Instrucctions(this);
-
+	
 	public Game(){
 		showMainMenu();
 	}
@@ -35,6 +37,18 @@ public class Game extends MainWindow{
 		tienda.setVisible(true);
 
 	}
+	
+	public void showPowers() {
+		removeWindow(menuPrincipal);
+		if(partida != null){
+			removeWindow(partida);
+		}
+		removeWindow(nivel);
+		removeWindow(tienda);
+		addWindow(power);
+		power.setVisible(true);
+
+	}
 
 	public void showMainMenu() {
 		removeWindow(nivel);
@@ -55,6 +69,7 @@ public class Game extends MainWindow{
 		addWindow(partida);
 		partida.setVisible(true);
 	}
+	
 	public void showInstrucctions() {
 		removeWindow(menuPrincipal);
 		removeWindow(tienda);
@@ -66,4 +81,3 @@ public class Game extends MainWindow{
 		instrucctions.setVisible(true);
 	}
 }
-
