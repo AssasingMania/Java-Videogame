@@ -5,13 +5,10 @@ import es.techtalents.ttgdl.gui.window.Window;
 
 public class ArmaLaser extends Arma{
 
-	private Window window;
 	
 	public ArmaLaser(Window w){
 		window = w;
 	}
-	
-	
 	
 	@Override
 	public void shoot(Point2f pos) {

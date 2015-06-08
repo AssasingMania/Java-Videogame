@@ -12,6 +12,8 @@ import es.techtalents.ttgdl.sprite.Sprite;
 
 public class Nave extends Sprite{
 	
+	private static ShipConfiguration config = new ShipConfiguration();
+	
 	private Window p;
 
 	private Vector2f speed = new Vector2f(0, 0);
@@ -29,10 +31,11 @@ public class Nave extends Sprite{
 
 	public Nave(Window w){
 		this.p = w;
-		a = new ArmaLaser(p);
+		a = config.getArma();
+		a.setWindow(w);
 		a.setTiempoDeRecarga(250);
-		Image imgNave = ImageLoader.loadImage("Imagenes/spaceshipY.png");
-		imgNave = imgNave.getScaledInstance(Game.WIDTH/10, Game.HEIGHT/5, Image.SCALE_SMOOTH);
+		Image imgNave = config.getImage();
+		
 		setImage(imgNave);
 		setVisible(true);
 
@@ -146,8 +149,17 @@ public class Nave extends Sprite{
 		if(pos.y > Game.HEIGHT - getHeight()){
 			pos.y = Game.HEIGHT - getHeight();
 		}
-		
-		
-
 	}
+	
+	public static void setConfig(ShipConfiguration config){
+		Nave.config = config;
+	}
+
+
+
+
+	public static ShipConfiguration getConfig() {
+		return Nave.config;
+	}
+	
 }

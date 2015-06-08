@@ -12,7 +12,7 @@ public class Instrucctions extends Window{
 	
 	public Instrucctions(Game game) {
 		this.game = game;
-		Image img = ImageLoader.loadImage("Imagenes/jaja.png");	
+		Image img = ImageLoader.loadImage("Imagenes2/lololololololololololololololololololololololol2.jpg");	
 		img = img.getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 		setBackgroundImage(img);
 		setWidth(Game.WIDTH);

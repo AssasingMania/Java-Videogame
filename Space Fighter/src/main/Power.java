@@ -15,7 +15,7 @@ public class Power extends Window{
 		Image backgroundPower = ImageLoader.loadImage("Imagenes2/power background.jpg");
 		setHeight(Game.HEIGHT);
 		setWidth(Game.WIDTH);
-		backgroundPower = backgroundPower.getScaledInstance(Game.HEIGHT, Game.WIDTH, Image.SCALE_SMOOTH);
+		backgroundPower = backgroundPower.getScaledInstance(Game.WIDTH, Game.HEIGHT, Image.SCALE_SMOOTH);
 		setBackgroundImage(backgroundPower);
 	}
 	
@@ -25,9 +25,20 @@ public class Power extends Window{
 		if(keyCode == KeyEvent.VK_ESCAPE){
 			game.showTienda();
 		}
-
-
+		if(keyCode == KeyEvent.VK_C){
+			Image img = ImageLoader.loadImage("Imagenes2/power background.jpg");
+			img = img.getScaledInstance(Game.WIDTH/20, (int) (Game.HEIGHT/2.5f), Image.SCALE_SMOOTH);
+			ShipConfiguration configActual = Nave.getConfig();
+			configActual.setImage(img);
+			Nave.setConfig(new ShipConfiguration(img));
+		}
+		
 	}
+	
+	
+	
+	
+	
 	
 	
 }

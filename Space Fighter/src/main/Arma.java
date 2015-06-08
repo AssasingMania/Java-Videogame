@@ -1,12 +1,14 @@
 package main;
 
 import es.techtalents.ttgdl.geom.Point2f;
+import es.techtalents.ttgdl.gui.window.Window;
 
 public abstract class Arma{
 	
 	
 	private long tiempoAnterior;
 	private long tiempoDeRecarga;
+	protected Window window;
 	
 	
 	public abstract void shoot(Point2f pos);
@@ -23,6 +25,9 @@ public abstract class Arma{
 		
 	}
 	
+	public void setWindow(Window w){
+		this.window = w;
+	}
 	
 	public void setTiempoDeRecarga(int t){
 		tiempoDeRecarga = t;

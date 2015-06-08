@@ -33,9 +33,10 @@ public class Game extends MainWindow{
 			removeWindow(partida);
 		}
 		removeWindow(nivel);
+		removeWindow(power);
 		addWindow(tienda);
 		tienda.setVisible(true);
-
+		
 	}
 	
 	public void showPowers() {

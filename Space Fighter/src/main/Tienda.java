@@ -1,15 +1,10 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 
 import es.techtalents.ttgdl.gui.window.Window;
 import es.techtalents.ttgdl.image.ImageLoader;
-
-
-
-
 
 
 
@@ -72,7 +67,7 @@ public class Tienda extends Window{
 		Button botonPower = new Button(powers, powers2){
 
 			public void click() {
-				System.exit(0);
+				game.showPowers();
 			}
 
 		};
