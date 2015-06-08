@@ -19,7 +19,6 @@ public abstract class Button extends Sprite{
 	}
 	
 	
-	
 	public void act() {
 		
 	}
