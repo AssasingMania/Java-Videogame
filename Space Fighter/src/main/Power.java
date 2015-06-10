@@ -36,7 +36,7 @@ public class Power extends Window{
 
 		
 		final Image img = ImageLoader.loadImage("Imagenes/POSIBLISIMA NAVE.png")
-				.getScaledInstance(Game.WIDTH/20, (int) (Game.HEIGHT/10f), Image.SCALE_SMOOTH);
+				.getScaledInstance(Game.WIDTH/10, (int) (Game.HEIGHT/5), Image.SCALE_SMOOTH);
 		
 		Button botonPower = new Button(img,img){
 

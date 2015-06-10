@@ -42,6 +42,7 @@ public class Partida extends Window{
 	private Image img;
 	private Image img2;
 	private boolean troll = false;
+	private Sound s3;
 
 	public Partida(Game game, int dificultad){
 		img2=null;
@@ -60,7 +61,7 @@ public class Partida extends Window{
 			tiempRecargaBoss=900;
 			tiempRecargaEsbirro1=1000;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
-			
+			s3 = new Sound("MUSICA/Game_Over_sound_effect.wav", 1);
 
 		}
 
@@ -78,6 +79,7 @@ public class Partida extends Window{
 			tiempRecargaBoss=700;
 			tiempRecargaEsbirro1=900;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
+			s3 = new Sound("MUSICA/Game_Over_sound_effect.wav", 1);
 		}
 
 		//Dificil
@@ -94,6 +96,7 @@ public class Partida extends Window{
 			tiempRecargaBoss=600;
 			tiempRecargaEsbirro1=850;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
+			s3 = new Sound("MUSICA/Game_Over_sound_effect.wav", 1);
 		}
 
 		//Impossible
@@ -110,6 +113,7 @@ public class Partida extends Window{
 			tiempRecargaBoss=100;
 			tiempRecargaEsbirro1=500;
 			s2 =new Sound("MUSICA/DMX_-_Where_The_Hood_At_Dirty_HQ_mp3cut.wav", 1);
+			s3 = new Sound("MUSICA/Game_Over_sound_effect.wav", 1);
 		}   
 
 		setBackgroundImage((Image) img2);
@@ -133,6 +137,7 @@ public class Partida extends Window{
 			game.showMainMenu();
 			s.stopAll();
 			s2.stopAll();
+			s3.stopAll();
 		}
 
 	}
@@ -185,8 +190,14 @@ public class Partida extends Window{
 		}
 		if(boss !=  null && boss.isDead()){
 			s.stopAll();
+			s3.stopAll();
 			s2.start();
 			setBackgroundImage(ImageLoader.loadImage("Imagenes/IMAGENES/youwin.png"));
+		}
+		if(nave == null){
+			s.stopAll();
+			s3.start();
+			setBackgroundImage(ImageLoader.loadImage("Imagenes2/gaem over.png"));
 		}
 
 

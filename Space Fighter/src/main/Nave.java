@@ -161,5 +161,9 @@ public class Nave extends Sprite{
 	public static ShipConfiguration getConfig() {
 		return Nave.config;
 	}
+
+
+
+
 	
 }
